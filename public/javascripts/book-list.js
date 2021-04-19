@@ -1,5 +1,4 @@
 const GENERIC_ERROR_MESSAGE = "Something Went Wrong. Try Again Later.";
-const BASE_URL = "http://localhost:3000";
 
 function loadBookList(bookList) {
     var bookHtml = "";
@@ -45,7 +44,7 @@ function getBookList(callback){
             callback(this);
         }
     };
-    xhttp.open("GET", BASE_URL + "/books", true);
+    xhttp.open("GET", "/books", true);
     xhttp.send();
 }
 
@@ -73,7 +72,7 @@ function addBook() {
             }
         }
     };
-    xhttp.open("POST", BASE_URL + "/books", true);
+    xhttp.open("POST", "/books", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("isbn=" + document.getElementById("isbn").value +
                 "&title=" + document.getElementById("title").value +
