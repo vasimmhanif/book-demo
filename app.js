@@ -13,6 +13,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/jack', booksRouter);
+app.use('/books', booksRouter);
 
 module.exports = app;
