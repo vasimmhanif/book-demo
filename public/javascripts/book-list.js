@@ -37,27 +37,35 @@ function loadBookList(bookList) {
     document.getElementById("bookListContainer").innerHTML = bookHtml; 
 }
 
-function getBookList(callback){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState === 4) {
-            callback(this);
-        }
-    };
-    xhttp.open("GET", "/books", true);
-    xhttp.send();
+function getBookList(){
+    let myPromise = new Promise(function(myResolve, myReject) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4) {
+                if(this.status == 200) {
+                    myResolve(this);
+                } else {
+                    myReject({message: GENERIC_ERROR_MESSAGE});
+                }
+            }
+        };
+        xhttp.open("GET", "/books", true);
+        xhttp.send();
+    });
+    return myPromise;
 }
 
 //After Refresh button
 function onRefresh() {
-    getBookList(function(response) {
-        if(response.status === 200) {
-            var bookList = JSON.parse(response.responseText);
+    getBookList().then(
+        function (value) {
+            var bookList = JSON.parse(value.responseText);
             loadBookList(bookList);
-        } else {
-            alert(GENERIC_ERROR_MESSAGE);
+        },
+        function(error) {
+            alert(error.message);
         }
-    });
+    );
 }
 
 // After add book
@@ -78,15 +86,15 @@ function addBook() {
                 "&title=" + document.getElementById("title").value +
                 "&author=" + document.getElementById("author").value +
                 "&publisheddate=" + document.getElementById("publisheddate").value +
-                "&publisher=" + document.getElementById("publisher").value)
+                "&publisher=" + document.getElementById("publisher").value);
 }
 
-getBookList(function(response) {
-    if(response.status === 200) {
-        var bookList = JSON.parse(response.responseText);
+getBookList().then(
+    function (value) {
+        var bookList = JSON.parse(value.responseText);
         loadBookList(bookList);
-    } else {
-        document.getElementById("bookListContainer").innerHTML = 
-            GENERIC_ERROR_MESSAGE;
+    } ,
+    function(error) {
+        document.getElementById("bookListContainer").innerHTML = error.message;
     }
-});
+);
