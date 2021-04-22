@@ -1,3 +1,5 @@
+var bookService  = new BookService();
+
 function loadBookList(bookList) {
     var bookHtml = "";
     if (bookList.length === 0) {
@@ -36,7 +38,7 @@ function loadBookList(bookList) {
 }
 
 function onRefresh() {
-    getBookList().then(
+    bookService.getBookList().then(
         function (value) {
             var bookList = JSON.parse(value.responseText);
             loadBookList(bookList);
@@ -48,7 +50,7 @@ function onRefresh() {
 }
 
 function onClickAddBook() {
-    addBook().then(
+    bookService.addBook().then(
         function(response) {
             alert(response.responseText);
         }, 
@@ -58,7 +60,7 @@ function onClickAddBook() {
     );
 }
 
-getBookList().then(
+bookService.getBookList().then(
     function (value) {
         var bookList = JSON.parse(value.responseText);
         loadBookList(bookList);

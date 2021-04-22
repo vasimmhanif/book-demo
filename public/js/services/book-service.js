@@ -1,6 +1,8 @@
 const GENERIC_ERROR_MESSAGE = "Something Went Wrong. Try Again Later.";
 
-function getBookList() {
+function BookService() {}
+
+BookService.prototype.getBookList = function() {
     return new Promise(function(resolve, reject) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -15,9 +17,9 @@ function getBookList() {
         xhttp.open("GET", "/books", true);
         xhttp.send();
     });
-}
+};
 
-function addBook() {
+BookService.prototype.addBook = function() {
     return new Promise(function(resolve,reject) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -37,4 +39,4 @@ function addBook() {
                     "&publisheddate=" + document.getElementById("publisheddate").value +
                     "&publisher=" + document.getElementById("publisher").value);
     });
-}
+};
