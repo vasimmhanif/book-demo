@@ -7,6 +7,6 @@ CREATE TABLE books (
     title varchar(255),
     author varchar(255),
     publisher varchar(255),
-    publisheddate date,
+    published_date date,
     primary key (isbn)
 );
