@@ -36,7 +36,7 @@ BookService.prototype.addBook = function() {
         xhttp.send("isbn=" + document.getElementById("isbn").value +
                     "&title=" + document.getElementById("title").value +
                     "&author=" + document.getElementById("author").value +
-                    "&publisheddate=" + document.getElementById("publisheddate").value +
-                    "&publisher=" + document.getElementById("publisher").value);
+                    "&publisher=" + document.getElementById("publisher").value +
+                    "&publishedDate=" + document.getElementById("publishedDate").value);
     });
 };

@@ -16,16 +16,22 @@ con.connect(function(err) {
 });
 
 router.get('/', function(req, res) {
-  con.query("SELECT* FROM books", function (err, result, fields) {
+  con.query("select isbn, title, author, publisher, published_date as publishedDate from books;", function (err, result, fields) {
     if (err) throw err;
+    console.log(result);
     res.send(result);
   });
 });
 
-router.post('/', function(req, res, next) {
-  const book = req.body;
-  books.push(book);
-  res.send('book is added to the database');
+router.post('/', function(req, res) {
+  console.log(req.body);
+  var book = req.body;
+  var sql = `INSERT INTO books (isbn, title, author, publisher, published_date)
+             VALUES ('${book.isbn}','${book.title}','${book.author}','${book.publisher}','${book.publishedDate}')`;
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    res.send("book is added to the database");
+  });
 });
 
 module.exports = router;

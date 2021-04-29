@@ -23,14 +23,15 @@ function loadBookList(bookList) {
                             </div>
                             
                             <div class="item">
-                                <span class="title">Published Date : </span>
-                                <span class="value">${bookItem.publisheddate}</span>
-                            </div>
-
-                            <div class="item">
                                 <span class="title">Publisher : </span>
                                 <span class="value">${bookItem.publisher}</span>
                             </div>
+
+                            <div class="item">
+                                <span class="title">Published Date : </span>
+                                <span class="value">${bookItem.publishedDate}</span>
+                            </div>
+
                         </div>`;
         });
     }
@@ -53,7 +54,7 @@ function onClickAddBook() {
     bookService.addBook().then(
         function(response) {
             alert(response.responseText);
-        }, 
+        },
         function(error) {
             alert(error.message);
         }
