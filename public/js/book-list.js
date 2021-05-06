@@ -7,17 +7,17 @@ function loadBookList(bookList) {
     } else {
         bookList.forEach(function(bookItem, index) {
             var publishedDateObject = new Date(bookItem.publishedDate);
+            var publishedDateStr = publishedDateObject.getDate();
+            if( publishedDateStr < 10 ) {
+                publishedDateStr = "0" + publishedDateStr;
+            }
+            
             var publishedMonthStr = publishedDateObject.getMonth() + 1;
             if( publishedMonthStr < 10 ) {
                 publishedMonthStr = "0" + publishedMonthStr;
             }
 
-            var publishedDateStr = publishedDateObject.getDate();
-            if( publishedDateStr < 10 ) {
-                publishedDateStr = "0" + publishedDateStr;
-            }
-
-            var publishedFormattedDate = publishedDateStr + "/" + publishedMonthStr + "/" + publishedDateObject.getFullYear();
+            var publishedFormattedDate = publishedDateStr + "-" + publishedMonthStr + "-" + publishedDateObject.getFullYear();
             
             bookHtml += "<div class=\"book-item\">" +
                             

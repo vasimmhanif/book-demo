@@ -14,7 +14,7 @@ con.connect(function(err) {
 });
 
 router.get('/', function(req, res) {
-  con.query("select isbn, title, author, publisher, published_date as publishedDate from books;", function (err, result, fields) {
+  con.query("select isbn, title, author, publisher, date_format(published_date, \"%m/%d/%Y\") as publishedDate from books;", function (err, result, fields) {
     if (err) throw err;
     res.send(result);
   });
