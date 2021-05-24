@@ -67,7 +67,8 @@ function onRefresh() {
 function onClickAddBook() {
     bookService.addBook().then(
         function(response) {
-            alert(response.responseText);
+            var messageJson = JSON.parse(response.responseText);
+            alert(messageJson.message);
         },
         function(error) {
             alert(error.message);
