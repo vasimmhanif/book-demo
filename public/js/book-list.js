@@ -56,7 +56,7 @@ function onRefresh() {
     bookService.getBookList().then(
         function (response) {
             var bookList = JSON.parse(response.responseText);
-            loadBookList(bookList);
+            loadBookList(bookList.data);
         },
         function(error) {
             alert(error.message);
@@ -78,7 +78,7 @@ function onClickAddBook() {
 bookService.getBookList().then(
     function (response) {
         var bookList = JSON.parse(response.responseText);
-        loadBookList(bookList);
+        loadBookList(bookList.data);
     },
     function(error) {
         document.getElementById("bookListContainer").innerHTML = error.message;
