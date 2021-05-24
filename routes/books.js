@@ -1,33 +1,23 @@
 var express = require('express');
-var mysql = require('mysql');
 var router = express.Router();
+const books = require('../services/book-service');
 
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "learning_nodejs"
+router.get('/', async function(req, res, next) {
+  try {
+    res.json(await books.getMultiple(req.query.page));
+  } catch {
+    console.error('Error while getting book data');
+    next(error);
+  }
 });
 
-con.connect(function(err) {
-  if (err) throw err;
-});
-
-router.get('/', function(req, res) {
-  con.query("select isbn, title, author, publisher, date_format(published_date, \"%m/%d/%Y\") as publishedDate from books;", function (err, result, fields) {
-    if (err) throw err;
-    res.send(result);
-  });
-});
-
-router.post('/', function(req, res) {
-  var book = req.body;
-  var sql = `INSERT INTO books (isbn, title, author, publisher, published_date)
-             VALUES ('${book.isbn}','${book.title}','${book.author}','${book.publisher}','${book.publishedDate}')`;
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    res.send("book is added to the database");
-  });
+router.post('/', async function(req, res, next) {
+  try{
+    res.json(await books.create(req.body));
+  } catch (err) {
+    console.error('Error while adding book data');
+    next(error);
+  }
 });
 
 module.exports = router;
