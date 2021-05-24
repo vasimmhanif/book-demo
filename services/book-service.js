@@ -35,10 +35,48 @@ async function create(book) {
       message = 'Book is added to the database';
     }
 
-    return message;
+    return {message};
+}
+
+async function update(id,book) {
+  const result = await db.query(
+    `UPDATE books
+    SET isbn=?, title=?, author=?, publisher=?, published_date=?
+    WHERE id=?`,
+    [
+      book.isbn, book.title, book.author,
+      book.publisher, book.publishedDate, id
+    ]
+  );
+
+  let message = 'Error in book data update';
+
+  if(result.affectedRows){
+    message = 'book data updated successfully';
+  }
+
+  return {message};
+}
+
+async function remove(id) {
+  const result = await db.query(
+    `DELETE FROM books
+    WHERE id=?`,
+    [id]
+  );
+
+  let message = 'error in deleting book data';
+
+  if(result.affectedRows) {
+    message = 'book data deleted successfully'
+  }
+
+  return {message};
 }
 
 module.exports = {
     getMultiple,
-    create
+    create,
+    update,
+    remove
 };
