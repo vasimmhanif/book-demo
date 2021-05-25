@@ -20,18 +20,18 @@ router.post('/', async function(req, res, next) {
   }
 });
 
-router.put('/:id', async function(req, res, next) {
+router.put('/:isbn', async function(req, res, next) {
   try {
-    res.json(await books.update(req.params.id, req.body));
+    res.json(await books.update(req.params.isbn, req.body));
   } catch(err) {
     console.error('Error while updating book data', err.message);
     next(err);
   }
 });
 
-router.delete('/:id', async function(req, res, next) {
+router.delete('/:isbn', async function(req, res, next) {
   try {
-    res.json(await books.remove(req.params.id));
+    res.json(await books.remove(req.params.isbn));
   } catch(err) {
     console.error('Error while deleting book data', err.message);
     next(err);

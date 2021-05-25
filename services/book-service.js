@@ -38,14 +38,14 @@ async function create(book) {
     return {message};
 }
 
-async function update(id,book) {
+async function update(isbn, book) {
   const result = await db.query(
     `UPDATE books
-    SET isbn=?, title=?, author=?, publisher=?, published_date=?
-    WHERE id=?`,
+    SET title=?, author=?, publisher=?, published_date=?
+    WHERE isbn=?`,
     [
-      book.isbn, book.title, book.author,
-      book.publisher, book.publishedDate, id
+      book.title, book.author,
+      book.publisher, book.publishedDate, isbn
     ]
   );
 
@@ -58,11 +58,11 @@ async function update(id,book) {
   return {message};
 }
 
-async function remove(id) {
+async function remove(isbn) {
   const result = await db.query(
     `DELETE FROM books
-    WHERE id=?`,
-    [id]
+    WHERE isbn=?`,
+    [isbn]
   );
 
   let message = 'error in deleting book data';
