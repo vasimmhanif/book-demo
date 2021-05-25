@@ -40,3 +40,21 @@ BookService.prototype.addBook = function() {
                     "&publishedDate=" + document.getElementById("publishedDate").value);
     });
 };
+
+BookService.prototype.delete = function(isbnValue) {
+    return new Promise(function(resolve, reject) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4) {
+                if(this.status == 200) {
+                    resolve(this);
+                } else {
+                    reject({message: GENERIC_ERROR_MESSAGE});
+                }
+            }
+        };
+        xhttp.open("DELETE", "/books/" + isbnValue);
+        xhttp.setRequestHeader('contentType','application/json');
+        xhttp.send();
+    });
+};

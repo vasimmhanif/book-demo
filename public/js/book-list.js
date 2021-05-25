@@ -16,11 +16,11 @@ function loadBookList(bookList) {
             if( publishedMonthStr < 10 ) {
                 publishedMonthStr = "0" + publishedMonthStr;
             }
-
+            
             var publishedFormattedDate = publishedDateStr + "-" + publishedMonthStr + "-" + publishedDateObject.getFullYear();
             
             bookHtml += "<div class=\"book-item\">" +
-                            
+
                             "<div class=\"item\">" +
                                 "<span class=\"title\">ISBN : </span>" +
                                 "<span class=\"value1\">" + bookItem.isbn + "</span>" +
@@ -46,10 +46,14 @@ function loadBookList(bookList) {
                                 "<span class=\"value\">" + publishedFormattedDate + "</span>" +
                             "</div>" +
 
+                            "<div class=\"del\">" +
+                                "<button type=\"button\" onclick=\"remove('" + bookItem.isbn + "')\">Delete</button>" +
+                            "</div>" +
+
                         "</div>"
         });
     }
-    document.getElementById("bookListContainer").innerHTML = bookHtml; 
+    document.getElementById("bookListContainer").innerHTML = bookHtml;
 }
 
 function onRefresh() {
@@ -67,6 +71,18 @@ function onRefresh() {
 function onClickAddBook() {
     bookService.addBook().then(
         function(response) {
+            var messageJson = JSON.parse(response.responseText);
+            alert(messageJson.message);
+        },
+        function(error) {
+            alert(error.message);
+        }
+    );
+}
+
+function remove(isbn) {
+    bookService.delete(isbn).then(
+        function (response) {
             var messageJson = JSON.parse(response.responseText);
             alert(messageJson.message);
         },
