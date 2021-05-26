@@ -32,7 +32,7 @@ async function create(book) {
     let message = 'Error in creating programming language';
 
     if (result.affectedRows) {
-      message = 'Book is added to the database';
+      message = 'Book is added successfully.';
     }
 
     return {message};

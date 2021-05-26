@@ -77,6 +77,8 @@ function onClickAddBook() {
         function(response) {
             var messageJson = JSON.parse(response.responseText);
             alert(messageJson.message);
+            fetchAndLoadBookList();
+            showBookListSection();
         },
         function(error) {
             alert(error.message);
@@ -110,8 +112,13 @@ function fetchAndLoadBookList() {
 }
 
 function showAddBookSection() {
-    document.getElementById("bookListContainer").style.display = 'none';
     document.getElementById("addBookSection").style.display = 'block';
+    document.getElementById("bookListContainer").style.display = 'none';
+}
+
+function showBookListSection() {
+    document.getElementById("bookListContainer").style.display = 'block';
+    document.getElementById("addBookSection").style.display = 'none';
 }
 
 bookService.getBookList().then(
