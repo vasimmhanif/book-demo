@@ -53,19 +53,11 @@ function loadBookList(bookList) {
                         "</div>"
         });
     }
-    document.getElementById("bookListContainer").innerHTML = bookHtml;
+    document.getElementById("bookListSection").innerHTML = bookHtml;
 }
 
 function onRefresh() {
-    bookService.getBookList().then(
-        function (response) {
-            var bookList = JSON.parse(response.responseText);
-            loadBookList(bookList.data);
-        },
-        function(error) {
-            alert(error.message);
-        }
-    );
+    fetchAndLoadBookList();
 }
 
 function onClickAddBook() {
@@ -84,12 +76,30 @@ function remove(isbn) {
     bookService.delete(isbn).then(
         function (response) {
             var messageJson = JSON.parse(response.responseText);
+            fetchAndLoadBookList();
             alert(messageJson.message);
         },
         function(error) {
             alert(error.message);
         }
     );
+}
+
+function fetchAndLoadBookList() {
+    bookService.getBookList().then(
+        function (response) {
+            var bookList = JSON.parse(response.responseText);
+            loadBookList(bookList.data);
+        },
+        function(error) {
+            alert(error.message);
+        }
+    );
+}
+
+function showAddBookSection() {
+    document.getElementById("bookListContainer").style.display = 'none';
+    document.getElementById("addBookSection").style.display = 'block';
 }
 
 bookService.getBookList().then(
