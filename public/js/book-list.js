@@ -54,6 +54,12 @@ function loadBookList(bookList) {
         });
     }
     document.getElementById("bookListSection").innerHTML = bookHtml;
+    document.getElementById("isbn").value = '';
+    document.getElementById("title").value = '';
+    document.getElementById("author").value = '';
+    document.getElementById("publisher").value = '';
+    document.getElementById("publishedDate").value = '';
+
 }
 
 function onRefresh() {
