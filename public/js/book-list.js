@@ -60,6 +60,12 @@ function onRefresh() {
     fetchAndLoadBookList();
 }
 
+function goBack() {
+    document.getElementById("bookListContainer").style.display = 'block';
+    document.getElementById("addBookSection").style.display = 'none';
+    fetchAndLoadBookList();
+}
+
 function onClickAddBook() {
     bookService.addBook().then(
         function(response) {
