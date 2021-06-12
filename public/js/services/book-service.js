@@ -58,3 +58,25 @@ BookService.prototype.delete = function(isbnValue) {
         xhttp.send();
     });
 };
+
+BookService.prototype.updateBook = function() {
+    return new Promise(function(resolve,reject) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4) {
+                if(this.status === 200){
+                    resolve(this);
+                } else {
+                    reject({message: GENERIC_ERROR_MESSAGE});
+                }
+            }
+        };
+        xhttp.open("PUT", "/books", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("isbn=" + document.getElementById("isbn1").value +
+                    "&title=" + document.getElementById("title1").value +
+                    "&author=" + document.getElementById("author1").value +
+                    "&publisher=" + document.getElementById("publisher1").value +
+                    "&publishedDate=" + document.getElementById("publishedDate1").value);
+    });
+};

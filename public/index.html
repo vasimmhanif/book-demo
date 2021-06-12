@@ -25,7 +25,14 @@
                 padding: 5px;
             }
             .del {
+                margin-bottom: 15px;
+                margin-left: 15px;
+            }
+            .buttons {
                 margin-top: 15px;
+            }
+            .save-update {
+                margin-top: 10px;
             }
         </style>
     </head>
@@ -51,7 +58,7 @@
                 <label for="title">Title:</label><br>
                 <input class="formcontrol" id="title" name="title">
             </div>
-            
+
             <div class="form-group">
                 <label for="author">Author:</label><br>
                 <input class="formcontrol" id="author" name="author">
@@ -67,8 +74,40 @@
                 <input class="formcontrol" id="publishedDate" name="publishedDate">
             </div>
 
-            <div class="form-group">
+            <div class="save-update">
                 <button type="button" onclick="onClickAddBook()">Save</button>
+                <button type="button" onclick="goBack()">Back</button>
+            </div>
+        </div>
+
+        <div id="editBookSection" style="display: none;">
+            <div class="form-group">
+                <label for="isbn1">ISBN:</label><br>
+                <input class="formcontrol" id="isbn1" name="isbn" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="title1">Title:</label><br>
+                <input class="formcontrol" id="title1" name="title">
+            </div>
+
+            <div class="form-group">
+                <label for="author1">Author:</label><br>
+                <input class="formcontrol" id="author1" name="author">
+            </div>
+
+            <div class="form-group">
+                <label for="publisher1">Publisher:</label><br>
+                <input class="formcontrol" id="publisher1" name="publisher">
+            </div>
+
+            <div class="form-group">
+                <label for="publishedDate1">Published Date:</label><br>
+                <input class="formcontrol" id="publishedDate1" name="publishedDate">
+            </div>
+
+            <div class="save-update">
+                <button type="button" onclick="onClickUpdate()">Update</button>
                 <button type="button" onclick="goBack()">Back</button>
             </div>
         </div>
