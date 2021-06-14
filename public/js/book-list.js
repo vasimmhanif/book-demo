@@ -25,7 +25,7 @@ function loadBookList(bookList) {
 
                             "<div class=\"item\">" +
                                 "<span class=\"title\">ISBN : </span>" +
-                                "<span class=\"value1\">" + bookItem.isbn + "</span>" +
+                                "<span class=\"value\">" + bookItem.isbn + "</span>" +
                             "</div>" +
 
                             "<div class=\"item\">" +
