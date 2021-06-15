@@ -19,7 +19,7 @@ BookService.prototype.getBookList = function() {
     });
 };
 
-BookService.prototype.addBook = function() {
+BookService.prototype.addBook = function(book) {
     return new Promise(function(resolve,reject) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -33,11 +33,11 @@ BookService.prototype.addBook = function() {
         };
         xhttp.open("POST", "/books", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("isbn=" + document.getElementById("isbn").value +
-                    "&title=" + document.getElementById("title").value +
-                    "&author=" + document.getElementById("author").value +
-                    "&publisher=" + document.getElementById("publisher").value +
-                    "&publishedDate=" + document.getElementById("publishedDate").value);
+        xhttp.send("isbn=" + book.isbn +
+                    "&title=" + book.title +
+                    "&author=" + book.author +
+                    "&publisher=" + book.publisher +
+                    "&publishedDate=" + book.publishedDate);
     });
 };
 
@@ -59,7 +59,7 @@ BookService.prototype.delete = function(isbnValue) {
     });
 };
 
-BookService.prototype.updateBook = function() {
+BookService.prototype.updateBook = function(book) {
     return new Promise(function(resolve,reject) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -71,12 +71,12 @@ BookService.prototype.updateBook = function() {
                 }
             }
         };
-        xhttp.open("PUT", "/books", true);
+        xhttp.open("PUT", "/books/" + book.isbn, true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("isbn=" + document.getElementById("isbn1").value +
-                    "&title=" + document.getElementById("title1").value +
-                    "&author=" + document.getElementById("author1").value +
-                    "&publisher=" + document.getElementById("publisher1").value +
-                    "&publishedDate=" + document.getElementById("publishedDate1").value);
+        xhttp.send("isbn=" + book.isbn +
+                    "&title=" + book.title +
+                    "&author=" + book.author +
+                    "&publisher=" + book.publisher +
+                    "&publishedDate=" + book.publishedDate);
     });
 };

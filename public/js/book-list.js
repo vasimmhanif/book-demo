@@ -121,7 +121,14 @@ function goBack() {
 }
 
 function onClickAddBook() {
-    bookService.addBook().then(
+    var isbn = document.getElementById("isbn").value;
+    var title = document.getElementById("title").value;
+    var author = document.getElementById("author").value;
+    var publisher = document.getElementById("publisher").value;
+    var publishedDate = document.getElementById("publishedDate").value;
+
+    var book = {isbn : isbn, title, author, publisher, publishedDate};
+    bookService.addBook(book).then(
         function(response) {
             var messageJson = JSON.parse(response.responseText);
             alert(messageJson.message);
@@ -135,7 +142,14 @@ function onClickAddBook() {
 }
 
 function onClickUpdate() {
-    bookService.updateBook().then(
+    var isbn = document.getElementById("isbn1").value;
+    var title = document.getElementById("title1").value;
+    var author = document.getElementById("author1").value;
+    var publisher = document.getElementById("publisher1").value;
+    var publishedDate = document.getElementById("publishedDate1").value;
+
+    var book = {isbn, title, author, publisher, publishedDate};
+    bookService.updateBook(book).then(
         function(response) {
             var messageJson = JSON.parse(response.responseText);
             alert(messageJson.message);
