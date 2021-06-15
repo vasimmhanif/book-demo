@@ -86,18 +86,25 @@ function resetFieldValues() {
 function showAddBookSection() {
     document.getElementById("addBookSection").style.display = 'block';
     document.getElementById("bookListContainer").style.display = 'none';
+    document.getElementById("addIsbn").style.display = 'block';
+    document.getElementById("saveButton").style.display = 'block';
+    document.getElementById("editIsbn").style.display = 'none';
+    document.getElementById("updateButton").style.display = 'none';
     resetFieldValues();
 }
 
 function showBookListSection() {
     document.getElementById("bookListContainer").style.display = 'block';
     document.getElementById("addBookSection").style.display = 'none';
-    document.getElementById("editBookSection").style.display = 'none';    
 }
 
 function showEditSection() {
     document.getElementById("bookListContainer").style.display = 'none';
-    document.getElementById("editBookSection").style.display = 'block';
+    document.getElementById("addBookSection").style.display = 'block';
+    document.getElementById("addIsbn").style.display = 'none';
+    document.getElementById("editIsbn").style.display = 'block';
+    document.getElementById("saveButton").style.display = 'none';
+    document.getElementById("updateButton").style.display = 'block';
 }
 
 function onRefresh() {
@@ -107,16 +114,15 @@ function onRefresh() {
 function onEdit(book) {
     showEditSection();
     document.getElementById("isbn1").value = book.isbn;
-    document.getElementById("title1").value = book.title;
-    document.getElementById("author1").value = book.author;
-    document.getElementById("publisher1").value = book.publisher;
-    document.getElementById("publishedDate1").value = book.publishedDate;
+    document.getElementById("title").value = book.title;
+    document.getElementById("author").value = book.author;
+    document.getElementById("publisher").value = book.publisher;
+    document.getElementById("publishedDate").value = book.publishedDate;
 }
 
 function goBack() {
     document.getElementById("bookListContainer").style.display = 'block';
     document.getElementById("addBookSection").style.display = 'none';
-    document.getElementById("editBookSection").style.display = 'none';
     fetchAndLoadBookList();
 }
 
@@ -127,7 +133,7 @@ function onClickAddBook() {
     var publisher = document.getElementById("publisher").value;
     var publishedDate = document.getElementById("publishedDate").value;
 
-    var book = {isbn : isbn, title, author, publisher, publishedDate};
+    var book = {isbn, title, author, publisher, publishedDate};
     bookService.addBook(book).then(
         function(response) {
             var messageJson = JSON.parse(response.responseText);
@@ -143,10 +149,10 @@ function onClickAddBook() {
 
 function onClickUpdate() {
     var isbn = document.getElementById("isbn1").value;
-    var title = document.getElementById("title1").value;
-    var author = document.getElementById("author1").value;
-    var publisher = document.getElementById("publisher1").value;
-    var publishedDate = document.getElementById("publishedDate1").value;
+    var title = document.getElementById("title").value;
+    var author = document.getElementById("author").value;
+    var publisher = document.getElementById("publisher").value;
+    var publishedDate = document.getElementById("publishedDate").value;
 
     var book = {isbn, title, author, publisher, publishedDate};
     bookService.updateBook(book).then(
