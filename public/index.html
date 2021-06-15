@@ -31,7 +31,7 @@
             .buttons {
                 margin-top: 15px;
             }
-            .save-back, .update-back {
+            .button-list{
                 margin-top: 10px;
                 padding-left : 5px;
             }
@@ -50,14 +50,9 @@
         </div>
 
         <div id="addBookSection" style="display: none;">
-            <div class="form-group" id="addIsbn">
+            <div class="form-group">
                 <label for="isbn">ISBN:</label><br>
                 <input class="formcontrol" id="isbn" name="isbn">
-            </div>
-
-            <div class="form-group" id="editIsbn" style="display: none;">
-                <label for="isbn1">ISBN:</label><br>
-                <input class="formcontrol" id="isbn1" name="isbn" readonly>
             </div>
 
             <div class="form-group">
@@ -80,13 +75,9 @@
                 <input class="formcontrol" id="publishedDate" name="publishedDate">
             </div>
 
-            <div class="save-back" id="saveButton">
-                <button type="button" onclick="onClickAddBook()">Save</button>
-                <button type="button" onclick="goBack()">Back</button>
-            </div>
-
-            <div class="update-back" id="updateButton">
-                <button type="button" onclick="onClickUpdate()">Update</button>
+            <div class="button-list">
+                <button type="button" id="saveButton" onclick="onClickAddBook()">Save</button>
+                <button type="button" id="updateButton" onclick="onClickUpdate()">Update</button>
                 <button type="button" onclick="goBack()">Back</button>
             </div>
         </div>

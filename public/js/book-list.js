@@ -86,11 +86,10 @@ function resetFieldValues() {
 function showAddBookSection() {
     document.getElementById("addBookSection").style.display = 'block';
     document.getElementById("bookListContainer").style.display = 'none';
-    document.getElementById("addIsbn").style.display = 'block';
-    document.getElementById("saveButton").style.display = 'block';
-    document.getElementById("editIsbn").style.display = 'none';
+    document.getElementById("saveButton").style.display = 'inline-block';
     document.getElementById("updateButton").style.display = 'none';
     resetFieldValues();
+    document.getElementById("isbn").readOnly = false;
 }
 
 function showBookListSection() {
@@ -101,10 +100,9 @@ function showBookListSection() {
 function showEditSection() {
     document.getElementById("bookListContainer").style.display = 'none';
     document.getElementById("addBookSection").style.display = 'block';
-    document.getElementById("addIsbn").style.display = 'none';
-    document.getElementById("editIsbn").style.display = 'block';
     document.getElementById("saveButton").style.display = 'none';
-    document.getElementById("updateButton").style.display = 'block';
+    document.getElementById("updateButton").style.display = 'inline-block';
+    document.getElementById("isbn").readOnly = true;
 }
 
 function onRefresh() {
@@ -113,7 +111,7 @@ function onRefresh() {
 
 function onEdit(book) {
     showEditSection();
-    document.getElementById("isbn1").value = book.isbn;
+    document.getElementById("isbn").value = book.isbn;
     document.getElementById("title").value = book.title;
     document.getElementById("author").value = book.author;
     document.getElementById("publisher").value = book.publisher;
@@ -148,7 +146,7 @@ function onClickAddBook() {
 }
 
 function onClickUpdate() {
-    var isbn = document.getElementById("isbn1").value;
+    var isbn = document.getElementById("isbn").value;
     var title = document.getElementById("title").value;
     var author = document.getElementById("author").value;
     var publisher = document.getElementById("publisher").value;
