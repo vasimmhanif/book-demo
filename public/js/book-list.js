@@ -15,10 +15,10 @@ function loadBookList(bookList) {
             if( publishedMonthStr < 10 ) {
                 publishedMonthStr = "0" + publishedMonthStr;
             }
-            var publishedFormattedDate = publishedDateStr + "-" + publishedMonthStr + "-" + publishedDateObject.getFullYear();
+            var publishedFormattedDate = publishedDateStr + " / " + publishedMonthStr + " / " + publishedDateObject.getFullYear()  ;
             
-            bookItem.publishedDate = publishedDateObject.getFullYear() + "/" + publishedMonthStr + "/" + publishedDateStr;
-            
+            bookItem.publishedDate = publishedDateObject.getFullYear() + "-" + publishedMonthStr + "-" + publishedDateStr;
+
             var book = JSON.stringify(bookItem);
 
             bookHtml += "<div class=\"book-item\">" +
