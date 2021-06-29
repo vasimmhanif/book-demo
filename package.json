@@ -1,8 +1,8 @@
 {
   "name": "book-demo",
   "version": "1.0.0",
-  "private": true,
-  "main" : "app.js",
+  "private": false,
+  "main" : "books.js",
   "scripts": {
     "start": "node ./bin/www",
     "live": "nodemon ./bin/www"
