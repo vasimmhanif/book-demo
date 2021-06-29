@@ -1,11 +1,15 @@
 {
   "name": "book-demo",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
+  "main" : "app.js",
   "scripts": {
     "start": "node ./bin/www",
     "live": "nodemon ./bin/www"
   },
+  "keywords": [
+    "heroku"
+  ],
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
