@@ -1,6 +1,6 @@
-CREATE DATABASE learning_nodejs;
+CREATE DATABASE freedbtech_vasimdb;
 
-USE learning_nodejs;
+USE freedbtech_vasimdb;
 
 CREATE TABLE books (
     isbn            varchar(255),
