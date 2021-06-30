@@ -1,15 +1,11 @@
 const env = process.env;
-env.DB_HOST = 'localhost';
-env.DB_USER = 'root';
-env.DB_PASSWORD = 'root';
-env.DB_NAME = 'learning_nodejs';
 
 const config = {
     db : {
-        host: env.DB_HOST || 'freedb.tech',
-        user: env.DB_USER || 'freedbtech_vasimmhanif',
-        password: env.DB_PASSWORD || 'jack',
-        database: env.DB_NAME || 'freedbtech_vasimdb'
+        host: env.DB_HOST || 'localhost',
+        user: env.DB_USER || 'root',
+        password: env.DB_PASSWORD || 'root',
+        database: env.DB_NAME || 'learning_nodejs'
     } , 
     listPerPage: env.LIST_PER_PAGE || 10
 };
