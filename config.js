@@ -1,4 +1,8 @@
 const env = process.env;
+env.DB_HOST = 'localhost';
+env.DB_USER = 'root';
+env.DB_PASSWORD = 'root';
+env.DB_NAME = 'learning_nodejs';
 
 const config = {
     db : {
